@@ -1,0 +1,51 @@
+:root {
+    --button: #b3b3b3;
+    --button-color: #0a0a0a;
+    --shadow: #000;
+    --bg: #737373;
+    --header: #7a7a7a;
+    --color: #fafafa;
+    --lit-header: #e6e6e6;
+    --speed: 2s;
+}
+
+.found-title {
+    text-align: center;
+    -webkit-animation: swing var(--speed) infinite alternate ease-in-out;
+    animation: swing var(--speed) infinite alternate ease-in-out;
+    font-size: clamp(5rem, 40vmin, 20rem);
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    margin-bottom: 1rem;
+    letter-spacing: 1rem;
+    transform: translate3d(0, 0, 0vmin);
+    background: radial-gradient(var(--lit-header), var(--header) 45%) 100%/200% 200%;
+    -webkit-background-clip: text;
+     --button-color: #0a0a0a;;
+}
+
+.info {
+    text-align: center;
+    color: white;
+}
+.info h2 {
+    margin-bottom: 20px;
+
+}
+.found-link {
+    color: #2d2013;
+    text-decoration: none;
+    font-size: 20px;
+}
+.info p {
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+.cloak-container {
+    background-color: gray;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}

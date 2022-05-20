@@ -1,0 +1,21 @@
+header {
+    background-color: rgba( 3,37,65);
+    padding: 30px 0;
+}
+.header__container {
+    display: flex;
+    align-items: center;
+
+}
+.header__container a {
+    margin-top: 0;
+
+}
+.menu {
+    margin-left: 30px;
+}
+.menu a {
+    color: white;
+    margin-right: 15px;
+    font-size: 18px;
+}
