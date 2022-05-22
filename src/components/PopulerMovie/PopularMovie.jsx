@@ -4,10 +4,11 @@ import axios from "axios";
 import {Link} from "react-router-dom";
 const PopularMovie = () => {
        const [popular,setPopular] = useState([])
+      const [mediaType,setMediaType] = useState("movie")
         useEffect(() => {
-            axios("https://api.themoviedb.org/3/discover/movie?&language=ru&api_key=042f11beb984d2ca7828fd2109953f49")
+            axios(`https://api.themoviedb.org/3/discover/${mediaType}?&language=ru&api_key=042f11beb984d2ca7828fd2109953f49`)
                 .then(({data}) => setPopular(data.results))
-        },[])
+        },[mediaType])
     console.log(popular)
         const formatDate = (date) => {
             const month = ['янв', 'фев', 'мар', 'апр', 'май', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек']
@@ -18,7 +19,11 @@ const PopularMovie = () => {
         }
         return (
             <div className="container">
-                <h2 style={{marginTop:"20px"}}>Что Популярно</h2>
+              <div className="films-buttons">
+                  <h2 className="films-title" >Что Популярно</h2>
+                  <button onClick={() => setMediaType("movie")} className="glow-on-hover" type="button">Онлайн</button>
+                  <button onClick={() => setMediaType("tv")} className="glow-on-hover" type="button">По ТВ</button>
+              </div>
                 <div className="scroller">
                     {
                         popular.map((item) => (
@@ -33,9 +38,9 @@ const PopularMovie = () => {
                                 </div>
                                 <div className="card-content">
                                     <Link to={`/movie/${item.id}`}>
-                                        <h5 className="card-title">{item.title}</h5>
+                                        <h5 className="card-title">{item.title ||item.name}</h5>
                                     </Link>
-                                    <span className="card-year">{formatDate(item.release_date)}</span>
+                                    <span className="card-year">{item.release_date?formatDate(item.release_date)|| formatDate(item.last_air_date): ""}</span>
                                 </div>
                             </div>
                         ))

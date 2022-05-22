@@ -36,7 +36,10 @@ const SerialsInfo = () => {
     }
     return (
         <div>
-            <div className="info-film" style={{backgroundImage: `URL(https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces${films.backdrop_path})`}}>
+            <div className="info-film" style={{
+                backgroundImage: `URL(https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces${films.backdrop_path})`,
+                marginTop:"20px"
+            }}>
                 <div className="container">
                     <div className="row" >
                         <div className="col-3">
@@ -46,9 +49,9 @@ const SerialsInfo = () => {
                             />
                         </div>
                         <div className="col-8">
-                            <h2 className="info-title">{films.title}</h2>
+                            <h2 className="info-title">{films.name}</h2>
                             <div style={{display:"flex",alignItems:"center"}}>
-                                {films.release_date}
+                                {films.last_air_date}
                                 <ul className="info-list">
 
                                     {
@@ -79,12 +82,12 @@ const SerialsInfo = () => {
                         credits.cast.map((item) => (
                             <div className="movie-card" style={{zIndex:"2"}}>
                                 <div className="card-img">
-                                    <Link key={item.id} to={`/movie/${item.id}`}>
+                                    <Link key={item.id} to={`/person/${item.id}`}>
                                         <img src={`https://www.themoviedb.org/t/p/w440_and_h660_face${item.profile_path}`} alt=""/>
                                     </Link>
                                 </div>
                                 <div className="card-content">
-                                    <Link to={`/movie/${item.id}`}>
+                                    <Link to={`/person/${item.id}`}>
                                         <h5 className="card-title">{item.name}</h5>
                                         <h5 className="card-title">{item.character}</h5>
 

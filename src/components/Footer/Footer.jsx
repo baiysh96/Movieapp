@@ -17,7 +17,7 @@ const Footer = () => {
                         <li><a href="/"> О TMDB </a></li>
                         <li><a href="/"> Связаться с нами </a></li>
                         <li><a href="/">Форумы поддержки</a></li>
-                        <li><a href="/"> API</a></li>
+                        <li><a href={`https://www.themoviedb.org/documentation/api?language=ru`}> API</a></li>
                         <li><a href="/">Статус системы</a></li>
                       </ul>
                   </div>

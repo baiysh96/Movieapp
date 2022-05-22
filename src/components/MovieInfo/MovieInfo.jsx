@@ -3,15 +3,24 @@ import {Link, useParams} from "react-router-dom";
 import axios from 'axios';
 import Spinner from "../Spinner";
 import ReactPlayer from "react-player";
+import FastAverageColor from "fast-average-color";
 
 const MovieInfo = () => {
     const {id} = useParams()
     const [film, setFilm] = useState({})
     const [credits, setCredits] = useState({})
     const [trailer,setTrailer] = useState([])
+    const [color,setColor] = useState("")
     const [filmLoader, setFilmLoader] = useState(true);
     const [videoLoader, setVideoLoader] = useState(true);
     const [creditLoader, setCreditLoader] = useState(true);
+
+    function oneImageLoad(e) {
+        console.log(e.target)
+        new FastAverageColor().getColorAsync(e.target).then((imgColor) =>{
+            setColor(`rgba(${imgColor.value.slice(0,3).join(",")} 0.5`)
+        })
+    }
 
     useEffect(() => {
         axios(`https://api.themoviedb.org/3/movie/${id}?language=ru&api_key=6f19f87e3380315b9573c4270bfc863c`)
@@ -37,33 +46,31 @@ const MovieInfo = () => {
     }
 
     return (
-        <div>
-            <div className="info-film"
+        <div >
+           <div>
+            <div
                  style={{
-                     backgroundImage: `linear-gradient(to right, rgba(31.5, 31.5, 31.5, 1) 150px, rgba(31.5, 31.5, 31.5, 0.84) 100%),
-                     url(https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces${film.backdrop_path})`,
-                     backgroundSize: 'cover',
-                     backgroundRepeat: 'no-repeat',
+                     backgroundImage: `url(t/p/w1920_and_h800_multi_faces${film.backdrop_path})`,
+                     backgroundPosition: "right -200px top",
+                     backgroundSize: "cover",
+                     backgroundRepeat: "no-repeat",
                      paddingTop:"30px",
                      paddingBottom: "30px"
-                     //<div class="backdrop" style="/* padding-top: 30px; *
-                     // / /* padding-bottom: 30px; */ background-image:
-                     // url("https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/leeHVfEoza4GaZio1tIzevz6XYc.jpg");">
-
-                 }}
-            >
-                <div className="container">
-                    <div className="row" >
-                        <div className="col-3">
+                 }}>
+                <div className="container" >
+                    <div className="row" style={{backgroundColor: `${color}`}}  >
+                        <div className="col-3" >
                             <img
-                                src={`https://image.tmdb.org/t/p/w500/${film.poster_path}`}
+                                onLoad={oneImageLoad}
+                                crossOrigin="anonymous"
+                                src={`t/p/w500/${film.poster_path}`}
                                 alt="img"
                             />
                         </div>
                         <div className="col-8">
                             <h2 className="info-title">{film.title}</h2>
-                            <div style={{display:"flex",alignItems:"center"}}>
-                                {film.release_date}
+                            <div className="info-film" style={{display:"flex",alignItems:"center"}}>
+                                <span>{film.release_date}</span>
                                 <ul className="info-list">
 
                                     {
@@ -72,6 +79,7 @@ const MovieInfo = () => {
                                         ))
                                     }
                                 </ul>
+                                <a style={{color:"inherit",marginLeft:"10px"}} href="/">{`${film.runtime} мин`}</a>
                             </div>
                             <div style={{display:"flex",alignItems:"center",marginBottom:"30px"}}>
                                 <div className="info-rating">{film.vote_average}</div>
@@ -92,6 +100,7 @@ const MovieInfo = () => {
                     </div>
                 </div>
             </div>
+            </div>
           <div className="container">
               <h2 style={{marginTop:"20px"}}>В главных ролях</h2>
               <div className="scroller">
@@ -99,12 +108,12 @@ const MovieInfo = () => {
                       credits.cast.map((item) => (
                           <div className="movie-card" style={{zIndex:"2"}}>
                               <div className="card-img">
-                                  <Link key={item.id} to={`/movie/${item.id}`}>
+                                  <Link key={item.id} to={`/person/${item.id}`}>
                                       <img src={`https://www.themoviedb.org/t/p/w440_and_h660_face${item.profile_path}`} alt=""/>
                                   </Link>
                               </div>
                               <div className="card-content">
-                                  <Link to={`/movie/${item.id}`}>
+                                  <Link to={`/person/${item.id}`}>
                                       <h5 className="card-title">{item.name}</h5>
                                       <h5 className="card-title">{item.character}</h5>
 
@@ -119,7 +128,7 @@ const MovieInfo = () => {
             <div className="container">
                <div className="row">
                    <div className="col-6">
-                       <img src={`https://api.themoviedb.org/3/movie/${id}/videos?language=ru&api_key=`} alt=""/>
+                       <img src={`https://www.themoviedb.org/3/movie/${id}/videos?language=ru&api_key=`} alt=""/>
                    </div>
                </div>
 

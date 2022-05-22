@@ -113,6 +113,10 @@ a {
   background-color: rgb(65, 143, 143);
 
 }
+.info-film a{
+  margin: 0;
+
+}
 /*.info-film {*/
 /*  padding: 30px 40px;*/
 
@@ -178,11 +182,12 @@ input[type=text]{
   padding: 10px 20px;
   position: relative;
 }
-input[type=submit] {
+button[type=submit] {
   display: inline-flex;
   justify-content: center;
   align-content: center;
   align-items: center;
+  color: inherit;
   height: 46px;
   padding: 10px 26px;
   border: none;
@@ -190,12 +195,32 @@ input[type=submit] {
   border-radius: 30px;
   position: absolute;
   right: -1px;
-  color: #fff;
   font-weight: 700;
   font-size: 17px;
 }
-input[type=submit]:hover {
+.item-col {
+  width: 22.222%;
+  padding: 0 15px;
+}
+.search-menu {
+  background-color: #fff;
+  text-align: center;
+  padding: 30px 0;
+  color: #2d2013;
+  box-shadow: 2px 3px 2px 2px;
+}
+.search-title {
+  border-radius: 4px;
+  background-color: rgba(1,180,228);
+  text-align: center;
+  padding: 15px 0;
+}
+button[type=submit]:hover {
   color: #0a0a0a;
+  cursor: pointer;
+}
+.actor-title{
+  color: black;
 }
 
 .row {
@@ -244,13 +269,18 @@ input[type=submit]:hover {
 }
 .card-title{
   font-size: 14px;
-  color:rgba(0,0,0,0.6);
+  color: black;
 }
 .card-title:hover{
   color: rgb(1,180,228);
 }
 .card-year{
   color: rgba(0,0,0,0.6);
+}
+.films-buttons {
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
 }
 .consensus{
   width: 38px;
@@ -259,4 +289,65 @@ input[type=submit]:hover {
   position: absolute;
   bottom: -18px;
   left: 10px;
+}
+.glow-on-hover {
+  width: 100px;
+  height: 35px;
+  border: none;
+  outline: none;
+  color:  white;
+  background-color: darkcyan;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+}
+.films-title {
+  margin: 0 20px 0 20px;
+}
+.glow-on-hover:before {
+  content: '';
+  background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+  position: absolute;
+  top: -2px;
+  left:-2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+  border-radius: 10px;
+}
+
+.glow-on-hover:active {
+  color: #000
+}
+
+.glow-on-hover:active:after {
+  background: transparent;
+}
+
+.glow-on-hover:hover:before {
+  opacity: 1;
+}
+
+.glow-on-hover:after {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #1111;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+@keyframes glowing {
+  0% { background-position: 0 0; }
+  50% { background-position: 400% 0; }
+  100% { background-position: 0 0; }
 }

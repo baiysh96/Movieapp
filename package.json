@@ -1,12 +1,15 @@
 {
   "name": "moviedb",
   "version": "0.1.0",
+  "proxy": "https://www.themoviedb.org/",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
+    "fast-average-color": "^7.1.0",
+    "get-average-color": "^0.0.6",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-owl-carousel": "^2.3.3",
@@ -22,6 +25,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+
   "eslintConfig": {
     "extends": [
       "react-app",
