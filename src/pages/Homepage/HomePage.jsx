@@ -14,7 +14,8 @@ const HomePage = () => {
     }
     return (
        <div>
-           <div className="homePage-box" style={{ backgroundImage: `url(https://movie-db-01.netlify.app/static/media/search-background.d0714834dd45e4a87928.jpg)`,
+           <div className="homePage-box" style={{
+               backgroundImage: `url(/t/p/w1920_and_h600_multi_faces_filter(duotone,032541,01b4e4)/eshe8IkjRbE9maeFFLOBnGU2qTl.jpg)`,
                backgroundPosition: "center top",
                backgroundSize: "cover",
                backgroundRepeat: "no-repeat"}}>

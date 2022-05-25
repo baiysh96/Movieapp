@@ -4,33 +4,32 @@ import axios from "axios";
 import {Link} from "react-router-dom";
 const PopularMovie = () => {
        const [popular,setPopular] = useState([])
-      const [mediaType,setMediaType] = useState("movie")
+       const [mediaType,setMediaType] = useState("movie")
+       const [active,setActive] = useState(false)
         useEffect(() => {
-            axios(`https://api.themoviedb.org/3/discover/${mediaType}?&language=ru&api_key=042f11beb984d2ca7828fd2109953f49`)
+            axios(`https://api.themoviedb.org/3/discover/${mediaType}?language=ru&api_key=042f11beb984d2ca7828fd2109953f49`)
                 .then(({data}) => setPopular(data.results))
         },[mediaType])
-    console.log(popular)
         const formatDate = (date) => {
             const month = ['янв', 'фев', 'мар', 'апр', 'май', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек']
             const reversedDate = date.split('-').reverse()
             reversedDate[1] = month[reversedDate[1] - 1]
-            console.log(reversedDate)
             return reversedDate.join(' ')
         }
         return (
             <div className="container">
               <div className="films-buttons">
                   <h2 className="films-title" >Что Популярно</h2>
-                  <button onClick={() => setMediaType("movie")} className="glow-on-hover" type="button">Онлайн</button>
-                  <button onClick={() => setMediaType("tv")} className="glow-on-hover" type="button">По ТВ</button>
+                  <button onClick={() => setActive(!active) || setMediaType("movie")}  className={active?"selector active":"selector"} type="button">Онлайн</button>
+                  <button onClick={() => setActive(!active) || setMediaType("tv")} className={!active?"selector active":"selector"} type="button">По ТВ</button>
               </div>
                 <div className="scroller">
                     {
                         popular.map((item) => (
-                            <div className="movie-card">
+                            <div key={item.id} className="movie-card">
                                 <div className="card-img">
                                     <Link key={item.id} to={`/movie/${item.id}`}>
-                                        <img src={`https://www.themoviedb.org/t/p/w440_and_h660_face${item.poster_path}`} alt=""/>
+                                        <img src={`/t/p/w440_and_h660_face${item.poster_path}`} alt=""/>
                                     </Link>
                                     <div className="consensus">
                                         <div className="info-rating">{item.vote_average}</div>

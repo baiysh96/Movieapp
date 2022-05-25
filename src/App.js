@@ -26,7 +26,7 @@ const App = () => {
                     <Route path="/person/:id" element={<ActorInfo />} />
                     <Route path="*"  element={<NotFound />} />
                 </Routes>
-                <Footer />
+                <Footer/>
             </BrowserRouter>
 
         </div>

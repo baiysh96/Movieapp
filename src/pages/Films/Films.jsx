@@ -7,8 +7,9 @@ import PopularMovie from "../../components/PopulerMovie";
 const Films = () => {
     const [time,setTime] = useState("day")
     const [trends,setTrends] = useState([])
+    const [active,setActive] = useState(false)
     useEffect(() => {
-        axios(`https://api.themoviedb.org/3/trending/movie/${time}?&language=ru&api_key=042f11beb984d2ca7828fd2109953f49`)
+        axios(`https://api.themoviedb.org/3/trending/movie/${time}?language=ru&api_key=042f11beb984d2ca7828fd2109953f49`)
             .then(({data}) => setTrends(data.results))
     },[time])
     const formatDate = (date) => {
@@ -22,16 +23,16 @@ const Films = () => {
     <PopularMovie />
        <div className="films-buttons">
            <h2 className="films-title">Тренды</h2>
-           <button onClick={() => setTime("day")} className="glow-on-hover" type="button">Сегодня</button>
-           <button onClick={() => setTime("week")} className="glow-on-hover" type="button">На этой неделе</button>
+           <button onClick={() => setActive(!active) || setTime("day")}  className={active?"selector active":"selector"} type="button">Сегодня</button>
+           <button onClick={() => setActive(!active) || setTime("week")} className={!active?"selector active":"selector"} type="button">На этой неделе</button>
        </div>
         <div className="scroller">
             {
                 trends.map((item) => (
                     <div  key={item.id} className="movie-card">
                         <div className="card-img">
-                            <Link key={item.id} to={`/movie/${item.id}`}>
-                                <img src={`https://www.themoviedb.org/t/p/w440_and_h660_face${item.poster_path}`} alt=""/>
+                            <Link  to={`/movie/${item.id}`}>
+                                <img src={`/t/p/w440_and_h660_face${item.poster_path}`} alt=""/>
                             </Link>
                             <div className="consensus">
                                 <div className="info-rating">{item.vote_average}</div>
