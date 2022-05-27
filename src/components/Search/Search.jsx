@@ -20,27 +20,14 @@ const Search = () => {
 
     return (
         <div style={{marginTop:"30px"}} className="container">
-            <div className="row">
-                <div className="col-3">
-                    <h3 className="search-title">Результаты поиска</h3>
-                    <ul className="search-menu">
-                        <li>сериалы:{search.length}</li>
-                        <li>фильмы</li>
-                        <li>Люди</li>
-                        <li>Коллекции</li>
-                        <li>Компании</li>
-                        <li>Ключевые слова</li>
-                        <li>Телесети</li>
-                    </ul>
-                </div>
-            <div className="col-8">
+            <h3 className="search-title">Результаты поиска</h3>
               <div className="row">
                   {
                       search.map((item) => (
-                          <Link to={`/movie/${item.id}`} key={item.id} className="item-col">
+                          <Link to={`/movie/${item.id}`} key={item.id} className="col-2">
                               <div>
                                   <img style={{width:"100%"}}
-                                       src={`/t/p/w500/${item.poster_path}`} alt=""/>
+                                       src={`/t/p/w500/${item.poster_path?item.poster_path:"Нет фото"}`} alt="poster"/>
                               </div>
                               <div className="card-content">
                                   <Link to={`/movie/${item.id}`}>
@@ -54,8 +41,6 @@ const Search = () => {
                   }
               </div>
             </div>
-            </div>
-        </div>
     );
 };
 

@@ -18,7 +18,6 @@ const SerialsInfo = () => {
 
 
     function oneImageLoad(e) {
-        console.log(e.target)
         new FastAverageColor().getColorAsync(e.target).then((imgColor) =>{
             setColor(`rgba(${imgColor.value.slice(0,3).join(",")}, 0.5)`)
         })
@@ -51,7 +50,10 @@ const SerialsInfo = () => {
                 backgroundImage: `url(/t/p/w1920_and_h800_multi_faces${films.backdrop_path})`,
                 marginTop:"20px"
             }}>
-                <div style={{backgroundColor: `${color}`}}>
+                <div style={{
+                    backgroundColor: `${color}`,
+                    padding:"30px 0"
+                }}>
                 <div className="container">
                     <div className="row" >
                         <div className="col-3">

@@ -4,6 +4,8 @@ import axios from 'axios';
 import Spinner from "../Spinner";
 import ReactPlayer from "react-player";
 import FastAverageColor from "fast-average-color";
+import person from "../../assets/images/glyphicons-basic-4-user-grey-d8fe957375e70239d6abdd549fd7568c89281b2179b5f4470e2e12895792dfa5.svg"
+
 
 const MovieInfo = () => {
     const {id} = useParams()
@@ -46,7 +48,6 @@ const MovieInfo = () => {
 
     return (
         <div>
-            <div><h3 className="info-header">Обзор</h3></div>
             <div  style={{
                     backgroundImage: `url(/t/p/w1920_and_h800_multi_faces${film.backdrop_path})`,
                     // backgroundPosition: "right -200px top",
@@ -114,7 +115,7 @@ const MovieInfo = () => {
                             <div className="movie-card" style={{zIndex:"2"}}>
                                 <div className="card-img">
                                     <Link key={item.id} to={`/person/${item.id}`}>
-                                        <img src={`/t/p/w440_and_h660_face${item.profile_path}`} alt=""/>
+                                        <img src={`/t/p/w440_and_h660_face${item.profile_path === null?person:item.profile_path}`} alt=""/>
                                     </Link>
                                 </div>
                                 <div className="card-content">
@@ -143,7 +144,7 @@ const MovieInfo = () => {
                 <div className="row">
                     {
                         trailer.map(el =>
-                            <ReactPlayer playbackRate={true} playsinline={true} muted={true} key={el.id} url={`https://www.youtube.com/watch?v=${el.key}`} className ="col-6"/>
+                            <ReactPlayer  key={el.id} url={`https://www.youtube.com/watch?v=${el.key}`} className ="col-6"/>
                         )
                     }
                 </div>

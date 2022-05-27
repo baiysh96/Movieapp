@@ -110,7 +110,6 @@ a {
   align-items: center;
   text-align: start;
   padding: 70px 40px;
-  background-color: rgb(65, 143, 143);
 
 }
 .info-film a{
@@ -210,10 +209,7 @@ button[type=submit] {
   box-shadow: 2px 3px 2px 2px;
 }
 .search-title {
-  border-radius: 4px;
-  background-color: rgba(1,180,228);
-  text-align: center;
-  padding: 15px 0;
+
 }
 button[type=submit]:hover {
   color: #0a0a0a;
@@ -268,7 +264,11 @@ button[type=submit]:hover {
   padding: 26px 10px 12px 10px;
 }
 .card-title{
-  font-size: 14px;
+  font-size: 15px;
+  color: black;
+}
+.actor-desc{
+  font-size: 15px;
   color: black;
 }
 .card-title:hover{

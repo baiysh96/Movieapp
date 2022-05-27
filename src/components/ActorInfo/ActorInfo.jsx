@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import {Link, useParams} from "react-router-dom";
 import Spinner from "../Spinner";
+import person from "../../assets/images/glyphicons-basic-4-user-grey-d8fe957375e70239d6abdd549fd7568c89281b2179b5f4470e2e12895792dfa5.svg"
 
 const ActorInfo = () => {
     const {id} = useParams()
@@ -45,7 +46,9 @@ const ActorInfo = () => {
                 </div>
                 <div className="col-8" >
                     <h1 className="actor-title">{actor.name}</h1>
-                    <p className="card-title">{actor.biography}</p>
+                    <h2 style={{color:"black",margin:"10px 0 0 0 "}}>Биография:</h2>
+                    <p className="actor-desc">{actor.biography.length === 0?"Нет информации":actor.biography}</p>
+                     <h2 style={{color:"black",margin:"10px 0 0 0 "}}>Известность за:</h2>
                     <div className="scroller">
                         {
                             films.cast.map((item,index) => (
@@ -53,11 +56,11 @@ const ActorInfo = () => {
                                     <div className="card-img">
 
                                         <Link to={`/movie/${item.id}`}>
-                                            <img src={`/t/p/w440_and_h660_face${item.poster_path}`} alt=""/>
+                                            <img src={`/t/p/w440_and_h660_face${item.poster_path || person}`} alt=""/>
                                         </Link>
                                     </div>
                                     <div className="card-content">
-                                        <Link to={`/movie/${id}`}>
+                                        <Link to={`/movie/${item.id}`}>
                                             <h5 className="card-title">{item.title}</h5>
 
                                         </Link>
