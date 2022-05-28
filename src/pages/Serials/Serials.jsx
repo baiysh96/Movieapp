@@ -29,7 +29,7 @@ const Serials = () => {
                  popular.map((item) => (
                      <div key={item.id} className="movie-card">
                          <div className="card-img">
-                            <Link to={`/tv/${item.id}`}> <img src={`https:/www.themoviedb.org/t/p/w500/${item.poster_path}`} alt=""/>
+                            <Link to={mediaType === "tv"?`/tv/${item.id}`:`/movie/${item.id}` }> <img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`} alt=""/>
                                 <div className="consensus">
                                     <div className="info-rating">{item.vote_average}</div>
                                 </div>

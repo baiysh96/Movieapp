@@ -47,7 +47,7 @@ const SerialsInfo = () => {
     return (
         <div>
             <div className="info-film" style={{
-                backgroundImage: `url(https:/www.themoviedb.org/t/p/w1920_and_h800_multi_faces${films.backdrop_path})`,
+                backgroundImage: `url(https://image.tmdb.org/t/p/w1920_and_h800_multi_faces${films.backdrop_path})`,
                 marginTop:"20px"
             }}>
                 <div style={{
@@ -60,7 +60,7 @@ const SerialsInfo = () => {
                             <img
                                 // onLoad={oneImageLoad}
                                 // crossOrigin="anonymous"
-                                src={`https:/www.themoviedb.org/t/p/w500/${films.poster_path}`}
+                                src={`https://image.tmdb.org/t/p/w500/${films.poster_path}`}
                                 alt="img"
                             />
                         </div>
@@ -100,7 +100,7 @@ const SerialsInfo = () => {
                             <div className="movie-card" style={{zIndex:"2"}}>
                                 <div className="card-img">
                                     <Link key={item.id} to={`/person/${item.id}`}>
-                                        <img src={`https:/www.themoviedb.org/t/p/w440_and_h660_face${item.profile_path}`} alt=""/>
+                                        <img src={`https://image.tmdb.org/t/p/w440_and_h660_face${item.profile_path}`} alt=""/>
                                     </Link>
                                 </div>
                                 <div className="card-content">

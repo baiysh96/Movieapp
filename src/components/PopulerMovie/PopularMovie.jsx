@@ -4,7 +4,7 @@ import axios from "axios";
 import {Link} from "react-router-dom";
 const PopularMovie = () => {
        const [popular,setPopular] = useState([])
-       const [mediaType,setMediaType] = useState("movie")
+       const [mediaType,setMediaType] = useState("tv")
        const [active,setActive] = useState(false)
         useEffect(() => {
             axios(`https://api.themoviedb.org/3/discover/${mediaType}?language=ru&api_key=042f11beb984d2ca7828fd2109953f49`)
@@ -28,8 +28,8 @@ const PopularMovie = () => {
                         popular.map((item) => (
                             <div key={item.id} className="movie-card">
                                 <div className="card-img">
-                                    <Link key={item.id} to={`/movie/${item.id}`}>
-                                        <img src={`https:/www.themoviedb.org/t/p/w440_and_h660_face${item.poster_path}`} alt=""/>
+                                    <Link key={item.id} to={mediaType === "tv"?`/tv/${item.id}`:`/movie/${item.id}`}>
+                                        <img src={`https://image.tmdb.org/t/p/w440_and_h660_face${item.poster_path}`} alt=""/>
                                     </Link>
                                     <div className="consensus">
                                         <div className="info-rating">{item.vote_average}</div>
