@@ -31,9 +31,9 @@ const HomePage = () => {
     return (
        <div>
            <div className="homePage-box" style={{
-               backgroundImage: `url(https://www.themoviedb.org/t/p/w1920_and_h600_multi_faces_filter(duotone,032541,01b4e4)/6LfVuZBiOOCtqch5Ukspjb9y0EB.jpg)`,
+               backgroundImage: `url(https://www.themoviedb.org/t/p/w1920_and_h600_multi_faces/kf456ZqeC45XTvo6W9pW5clYKfQ.jpg)`,
                backgroundPosition: "center top",
-               backgroundColor:"rgb(65, 143, 143)",
+               backgroundColor:" rgba(3 37 65 0.8) , rgba(-3 37 65  0)",
                backgroundSize: "cover",
                backgroundRepeat: "no-repeat"}}>
                    <div className="container">

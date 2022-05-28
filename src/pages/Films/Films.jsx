@@ -32,7 +32,7 @@ const Films = () => {
                     <div  key={item.id} className="movie-card">
                         <div className="card-img">
                             <Link  to={`/movie/${item.id}`}>
-                                <img src={`/t/p/w440_and_h660_face${item.poster_path}`} alt=""/>
+                                <img src={`https:/www.themoviedb.org/t/p/w440_and_h660_face${item.poster_path}`} alt=""/>
                             </Link>
                             <div className="consensus">
                                 <div className="info-rating">{item.vote_average}</div>

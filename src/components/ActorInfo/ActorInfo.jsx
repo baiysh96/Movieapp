@@ -33,7 +33,7 @@ const ActorInfo = () => {
         <div className="container" style={{marginTop:"30px"}}>
             <div className="row">
                 <div className="col-3">
-                    <img style={{marginBottom: "30px"}} src={`/t/p/w440_and_h660_face${actor.profile_path}`} alt=""/>
+                    <img style={{marginBottom: "30px"}} src={`https:/www.themoviedb.org/t/p/w440_and_h660_face${actor.profile_path}`} alt=""/>
                     <h3 style={{marginBottom:"15px"}} className="actor-title">Персональная информация</h3>
                     <ul>
                         <li>Дата рождения</li>
@@ -56,7 +56,7 @@ const ActorInfo = () => {
                                     <div className="card-img">
 
                                         <Link to={`/movie/${item.id}`}>
-                                            <img src={`/t/p/w440_and_h660_face${item.poster_path || person}`} alt=""/>
+                                            <img src={`https:/www.themoviedb.org/t/p/w440_and_h660_face${item.poster_path || person}`} alt=""/>
                                         </Link>
                                     </div>
                                     <div className="card-content">

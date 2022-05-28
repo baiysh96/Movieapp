@@ -4,7 +4,7 @@ import {Link, useParams} from "react-router-dom";
 import axios from "axios";
 import Spinner from "../../components/Spinner";
 import ReactPlayer from "react-player";
-import FastAverageColor from "fast-average-color";
+// import FastAverageColor from "fast-average-color";
 
 const SerialsInfo = () => {
     const [filmLoader, setFilmLoader] = useState(true);
@@ -14,14 +14,14 @@ const SerialsInfo = () => {
     const {id} = useParams()
     const [films,setFilms] = useState({})
     const [trailer,setTrailer] = useState([])
-    const [color,setColor] = useState("")
+    // const [color,setColor] = useState("")
 
 
-    function oneImageLoad(e) {
-        new FastAverageColor().getColorAsync(e.target).then((imgColor) =>{
-            setColor(`rgba(${imgColor.value.slice(0,3).join(",")}, 0.5)`)
-        })
-    }
+    // function oneImageLoad(e) {
+    //     new FastAverageColor().getColorAsync(e.target).then((imgColor) =>{
+    //         setColor(`rgba(${imgColor.value.slice(0,3).join(",")}, 0.5)`)
+    //     })
+    // }
     useEffect(() => {
         axios(`https://api.themoviedb.org/3/tv/${id}?language=ru&api_key=042f11beb984d2ca7828fd2109953f49`)
             .then(({data}) => {
@@ -47,20 +47,20 @@ const SerialsInfo = () => {
     return (
         <div>
             <div className="info-film" style={{
-                backgroundImage: `url(/t/p/w1920_and_h800_multi_faces${films.backdrop_path})`,
+                backgroundImage: `url(https:/www.themoviedb.org/t/p/w1920_and_h800_multi_faces${films.backdrop_path})`,
                 marginTop:"20px"
             }}>
                 <div style={{
-                    backgroundColor: `${color}`,
+                    // backgroundColor: `${color}`,
                     padding:"30px 0"
                 }}>
                 <div className="container">
                     <div className="row" >
                         <div className="col-3">
                             <img
-                                onLoad={oneImageLoad}
-                                crossOrigin="anonymous"
-                                src={`/t/p/w500/${films.poster_path}`}
+                                // onLoad={oneImageLoad}
+                                // crossOrigin="anonymous"
+                                src={`https:/www.themoviedb.org/t/p/w500/${films.poster_path}`}
                                 alt="img"
                             />
                         </div>
@@ -100,7 +100,7 @@ const SerialsInfo = () => {
                             <div className="movie-card" style={{zIndex:"2"}}>
                                 <div className="card-img">
                                     <Link key={item.id} to={`/person/${item.id}`}>
-                                        <img src={`/t/p/w440_and_h660_face${item.profile_path}`} alt=""/>
+                                        <img src={`https:/www.themoviedb.org/t/p/w440_and_h660_face${item.profile_path}`} alt=""/>
                                     </Link>
                                 </div>
                                 <div className="card-content">

@@ -3,7 +3,7 @@ import {Link, useParams} from "react-router-dom";
 import axios from 'axios';
 import Spinner from "../Spinner";
 import ReactPlayer from "react-player";
-import FastAverageColor from "fast-average-color";
+// import FastAverageColor from "fast-average-color";
 import person from "../../assets/images/glyphicons-basic-4-user-grey-d8fe957375e70239d6abdd549fd7568c89281b2179b5f4470e2e12895792dfa5.svg"
 
 
@@ -12,17 +12,17 @@ const MovieInfo = () => {
     const [film, setFilm] = useState({})
     const [credits, setCredits] = useState({})
     const [trailer,setTrailer] = useState([])
-    const [color,setColor] = useState("")
+    // const [color,setColor] = useState("")
     const [filmLoader, setFilmLoader] = useState(true);
     const [videoLoader, setVideoLoader] = useState(true);
     const [creditLoader, setCreditLoader] = useState(true);
 
-    function oneImageLoad(e) {
-        new FastAverageColor().getColorAsync(e.target).then((imgColor) =>{
-           setColor(`rgba(${imgColor.value.slice(0,3).join(",")}, 0.5)`)
-
-        })
-    }
+    // function oneImageLoad(e) {
+    //     new FastAverageColor().getColorAsync(e.target).then((imgColor) =>{
+    //        setColor(`rgba(${imgColor.value.slice(0,3).join(",")}, 0.5)`)
+    //
+    //     })
+    // }
 
     useEffect(() => {
         axios(`https://api.themoviedb.org/3/movie/${id}?language=ru&api_key=6f19f87e3380315b9573c4270bfc863c`)
@@ -49,14 +49,16 @@ const MovieInfo = () => {
     return (
         <div>
             <div  style={{
-                    backgroundImage: `url(/t/p/w1920_and_h800_multi_faces${film.backdrop_path})`,
+                    backgroundImage: `url(https:/www.themoviedb.org/t/p/w1920_and_h800_multi_faces${film.backdrop_path})`,
                     // backgroundPosition: "right -200px top",
                     backgroundSize: "cover",
                     backgroundRepeat: "no-repeat",
                     margin:"30px 0"
                 }}
             >
-                <div style={{backgroundColor: `${color}`,
+                <div style={{
+                    // backgroundColor: `${color}`,
+
                     minWidth:"100%",
                     minHeight:"100%",
                     padding:"30px 0"
@@ -67,9 +69,9 @@ const MovieInfo = () => {
                         <div className="row" >
                             <div className="col-3">
                                 <img
-                                    onLoad={oneImageLoad}
-                                    crossOrigin="anonymous"
-                                    src={`/t/p/w500/${film.poster_path}`}
+                                    // onLoad={oneImageLoad}
+                                    // crossOrigin="anonymous"
+                                    src={`https:/www.themoviedb.org/t/p/w500/${film.poster_path}`}
                                     alt="img"
                                 />
                             </div>
@@ -112,10 +114,10 @@ const MovieInfo = () => {
                 <div className="scroller">
                     {
                         credits.cast.map((item) => (
-                            <div className="movie-card" style={{zIndex:"2"}}>
+                            <div key={item.id} className="movie-card" style={{zIndex:"2"}}>
                                 <div className="card-img">
-                                    <Link key={item.id} to={`/person/${item.id}`}>
-                                        <img src={`/t/p/w440_and_h660_face${item.profile_path === null?person:item.profile_path}`} alt=""/>
+                                    <Link  to={`/person/${item.id}`}>
+                                        <img src={`https:/www.themoviedb.org/t/p/w440_and_h660_face${item.profile_path === null?person:item.profile_path}`} alt=""/>
                                     </Link>
                                 </div>
                                 <div className="card-content">

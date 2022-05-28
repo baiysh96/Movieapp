@@ -27,7 +27,7 @@ const Search = () => {
                           <Link to={`/movie/${item.id}`} key={item.id} className="col-2">
                               <div>
                                   <img style={{width:"100%"}}
-                                       src={`/t/p/w500/${item.poster_path?item.poster_path:"Нет фото"}`} alt="poster"/>
+                                       src={`https:/www.themoviedb.org/t/p/w500/${item.poster_path?item.poster_path:"Нет фото"}`} alt="poster"/>
                               </div>
                               <div className="card-content">
                                   <Link to={`/movie/${item.id}`}>
