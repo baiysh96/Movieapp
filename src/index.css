@@ -121,9 +121,57 @@ a {
 
 /*}*/
 .info-list {
-   display: flex;
+  display: flex;
+}
+.burger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+.burger span {
+  width: 50px;
+  height: 2px;
+  background: #c0fecf;
+  z-index: 2;
+  position: relative;
+}
+.burger span:before {
+  content: "";
+  width: 50px;
+  height: 2px;
+  background: #c0fecf;
+  z-index: 2;
+  position: absolute;
+  top: -10px;
+  left: 0;
+}
 
- }
+.burger span:after {
+  content: "";
+  width: 50px;
+  height: 2px;
+  background:#c0fecf;
+  z-index: 2;
+  position: absolute;
+  bottom: -10px;
+  right: 0;
+}
+.show-menu span:before{
+  transform: rotate(-40deg);
+}
+.show-menu span:after{
+  transform: rotate(40deg);
+}
+.show-menu span:before,.show-menu span:after{
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+.show-menu span{
+  background-color: transparent;
+}
+
 .info-list a {
   color: white;
   text-decoration: none;
@@ -233,7 +281,6 @@ button[type=submit]:hover {
 .movie-card img{
   max-width: 100%;
 }
-
 .scroller {
   overflow-x: scroll;
   overflow-y: hidden;
@@ -443,7 +490,7 @@ button[type=submit]:hover {
     padding: 0 5px;
   }
   .menu {
-    background: #23180d;
+    background: rgba(var(--tmdbDarkBlue), 1);
     background-blend-mode: luminosity;
     mix-blend-mode: normal;
     border-radius: 10px;
@@ -514,7 +561,7 @@ button[type=submit]:hover {
   .row {
     align-items: center;
   }
-  .col-8,.col-3,.col-7,.col-4,.col-6{
+  .col-8,.col-3,.col-7,.col-2,.col-4,.col-6{
     width: 100%;
   }
   .col-4,.item-col{
