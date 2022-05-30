@@ -3,40 +3,38 @@ import {Link, useParams} from "react-router-dom";
 import axios from 'axios';
 import Spinner from "../Spinner";
 import ReactPlayer from "react-player";
-// import FastAverageColor from "fast-average-color";
 import person from "../../assets/images/glyphicons-basic-4-user-grey-d8fe957375e70239d6abdd549fd7568c89281b2179b5f4470e2e12895792dfa5.svg"
-
+import facebook from "../../assets/images/facebook.svg"
+import twitter from "../../assets/images/twitter.svg"
+import instagram from "../../assets/images/instagram.svg"
+import justWatch from "../../assets/images/justwatch-small-grey.svg"
+import basicIcon from "../../assets/images/basic-paginate.svg"
+import {BASE_API, IMAGE_BASE_API} from "../../constants/Constants";
+const API_KEY = process.env.REACT_APP_APIKEY
 
 const MovieInfo = () => {
     const {id} = useParams()
     const [film, setFilm] = useState({})
     const [credits, setCredits] = useState({})
     const [trailer,setTrailer] = useState([])
-    // const [color,setColor] = useState("")
     const [filmLoader, setFilmLoader] = useState(true);
     const [videoLoader, setVideoLoader] = useState(true);
     const [creditLoader, setCreditLoader] = useState(true);
 
-    // function oneImageLoad(e) {
-    //     new FastAverageColor().getColorAsync(e.target).then((imgColor) =>{
-    //        setColor(`rgba(${imgColor.value.slice(0,3).join(",")}, 0.5)`)
-    //
-    //     })
-    // }
-
     useEffect(() => {
-        axios(`https://api.themoviedb.org/3/movie/${id}?language=ru&api_key=6f19f87e3380315b9573c4270bfc863c`)
+        axios(`${BASE_API}/movie/${id}?language=ru&api_key=${API_KEY}`)
             .then((res) => {
                 setFilm(res.data)
                 setFilmLoader(false)
             })
-        axios(`https://api.themoviedb.org/3/movie/${id}/credits?language=ru&api_key=6f19f87e3380315b9573c4270bfc863c`)
+        axios(`${BASE_API}/movie/${id}/credits?language=ru&api_key=${API_KEY}`)
             .then((res) => {
                 setCredits(res.data)
                 setCreditLoader(false)
             })
-        axios(`https://api.themoviedb.org/3/movie/${id}/videos?language=ru&api_key=6f19f87e3380315b9573c4270bfc863c`)
+        axios(`${BASE_API}/movie/${id}/videos?language=ru&api_key=${API_KEY}`)
             .then(({data}) => {
+
                 setTrailer(data.results)
                 setVideoLoader(false)
             })
@@ -45,11 +43,10 @@ const MovieInfo = () => {
     if (filmLoader || creditLoader || videoLoader) {
         return <Spinner />
     }
-
     return (
         <div>
             <div  style={{
-                    backgroundImage: `url(https://image.tmdb.org/t/p/w1920_and_h800_multi_faces${film.backdrop_path})`,
+                    backgroundImage: `url(${IMAGE_BASE_API}w1920_and_h800_multi_faces${film.backdrop_path})`,
                     // backgroundPosition: "right -200px top",
                     backgroundSize: "cover",
                     backgroundRepeat: "no-repeat",
@@ -57,7 +54,6 @@ const MovieInfo = () => {
                 }}
             >
                 <div style={{
-                    // backgroundColor: `${color}`,
 
                     minWidth:"100%",
                     minHeight:"100%",
@@ -69,9 +65,7 @@ const MovieInfo = () => {
                         <div className="row" >
                             <div className="col-3">
                                 <img
-                                    // onLoad={oneImageLoad}
-                                    // crossOrigin="anonymous"
-                                    src={`https://image.tmdb.org/t/p/w500/${film.poster_path}`}
+                                    src={`${IMAGE_BASE_API}w500/${film.poster_path}`}
                                     alt="img"
                                 />
                             </div>
@@ -109,7 +103,7 @@ const MovieInfo = () => {
                     </div>
                 </div>
             </div>
-            <div className="container">
+            <div className="container position ">
                 <h2 style={{marginTop:"20px"}}>В главных ролях</h2>
                 <div className="scroller">
                     {
@@ -117,7 +111,7 @@ const MovieInfo = () => {
                             <div key={item.id} className="movie-card" style={{zIndex:"2"}}>
                                 <div className="card-img">
                                     <Link  to={`/person/${item.id}`}>
-                                        <img src={`https://image.tmdb.org/t/p/w440_and_h660_face${item.profile_path === null?person:item.profile_path}`} alt=""/>
+                                        <img src={`${IMAGE_BASE_API}w440_and_h660_face${item.profile_path === null?person:item.profile_path}`} alt=""/>
                                     </Link>
                                 </div>
                                 <div className="card-content">
@@ -130,6 +124,27 @@ const MovieInfo = () => {
                             </div>
                         ))
                     }
+                </div>
+                <div>
+                    <div className="film-info">
+                        <img className="social-img" src={facebook} width="35px"  alt=""/>
+                        <img className="social-img"  src={twitter}  width="35px"  alt=""/>
+                        <img className="social-img"  src={instagram} width="35px"  alt=""/>
+                        <img className="social-img"  src={justWatch} width="35px" alt=""/>
+                        <img className="social-img"  src={basicIcon} width="35px" alt=""/>
+                        <ul>
+                            <h3 className="title">Исходное название</h3>
+                            <li className="title">{film.original_title}</li>
+                            <h3 className="title">Статус</h3>
+                            <li className="title">{film.status}</li>
+                            <h3 className="title">Исходный язык</h3>
+                            <li className="title">{film.original_language}</li>
+                            <h3 className="title">Бюджет</h3>
+                            <li className="title">{film.budget}$</li>
+                            <h3 className="title">Сборы</h3>
+                            <li className="title">{film.revenue}$</li>
+                        </ul>
+                    </div>
                 </div>
 
             </div>

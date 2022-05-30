@@ -4,7 +4,8 @@ import {Link, useParams} from "react-router-dom";
 import axios from "axios";
 import Spinner from "../../components/Spinner";
 import ReactPlayer from "react-player";
-// import FastAverageColor from "fast-average-color";
+import {BASE_API, IMAGE_BASE_API} from "../../constants/Constants";
+const API_KEY = process.env.REACT_APP_APIKEY
 
 const SerialsInfo = () => {
     const [filmLoader, setFilmLoader] = useState(true);
@@ -14,26 +15,20 @@ const SerialsInfo = () => {
     const {id} = useParams()
     const [films,setFilms] = useState({})
     const [trailer,setTrailer] = useState([])
-    // const [color,setColor] = useState("")
 
 
-    // function oneImageLoad(e) {
-    //     new FastAverageColor().getColorAsync(e.target).then((imgColor) =>{
-    //         setColor(`rgba(${imgColor.value.slice(0,3).join(",")}, 0.5)`)
-    //     })
-    // }
     useEffect(() => {
-        axios(`https://api.themoviedb.org/3/tv/${id}?language=ru&api_key=042f11beb984d2ca7828fd2109953f49`)
+        axios(`${BASE_API}tv/${id}?language=ru&api_key=${API_KEY}`)
             .then(({data}) => {
                 setFilms(data)
                 setFilmLoader(false)
             })
-        axios(`https://api.themoviedb.org/3/tv/${id}/credits?language=ru&api_key=042f11beb984d2ca7828fd2109953f49`)
+        axios(`${BASE_API}tv/${id}/credits?language=ru&api_key=${API_KEY}`)
             .then(({data}) => {
                 setCredits(data)
                 setCreditLoader(false)
             })
-        axios(`https://api.themoviedb.org/3/tv/${id}/videos?language=ru&api_key=6f19f87e3380315b9573c4270bfc863c`)
+        axios(`${BASE_API}tv/${id}/videos?language=ru&api_key=${API_KEY}`)
             .then(({data}) => {
                 setTrailer(data.results)
                 setVideoLoader(false)
@@ -47,20 +42,17 @@ const SerialsInfo = () => {
     return (
         <div>
             <div className="info-film" style={{
-                backgroundImage: `url(https://image.tmdb.org/t/p/w1920_and_h800_multi_faces${films.backdrop_path})`,
+                backgroundImage: `url(${IMAGE_BASE_API}w1920_and_h800_multi_faces${films.backdrop_path})`,
                 marginTop:"20px"
             }}>
                 <div style={{
-                    // backgroundColor: `${color}`,
                     padding:"30px 0"
                 }}>
                 <div className="container">
                     <div className="row" >
                         <div className="col-3">
                             <img
-                                // onLoad={oneImageLoad}
-                                // crossOrigin="anonymous"
-                                src={`https://image.tmdb.org/t/p/w500/${films.poster_path}`}
+                                src={`${IMAGE_BASE_API}w500/${films.poster_path}`}
                                 alt="img"
                             />
                         </div>
@@ -100,7 +92,7 @@ const SerialsInfo = () => {
                             <div className="movie-card" style={{zIndex:"2"}}>
                                 <div className="card-img">
                                     <Link key={item.id} to={`/person/${item.id}`}>
-                                        <img src={`https://image.tmdb.org/t/p/w440_and_h660_face${item.profile_path}`} alt=""/>
+                                        <img src={`${IMAGE_BASE_API}w440_and_h660_face${item.profile_path}`} alt=""/>
                                     </Link>
                                 </div>
                                 <div className="card-content">

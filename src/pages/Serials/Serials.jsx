@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import {Link} from "react-router-dom";
+import {BASE_API, IMAGE_BASE_API} from "../../constants/Constants";
+const API_KEY = process.env.REACT_APP_APIKEY
 
 const Serials = () => {
     const [popular,setPopular] = useState([])
@@ -8,7 +10,7 @@ const Serials = () => {
     const [active,setActive] = useState(false)
 
     useEffect(() => {
-        axios(`https://api.themoviedb.org/3/trending/${mediaType}/day?&language=ru&api_key=042f11beb984d2ca7828fd2109953f49`)
+        axios(`${BASE_API}trending/${mediaType}/day?&language=ru&api_key=${API_KEY}`)
             .then(({data}) => setPopular(data.results))
     },[popular,mediaType])
     const formatDate = (date) => {
@@ -29,7 +31,7 @@ const Serials = () => {
                  popular.map((item) => (
                      <div key={item.id} className="movie-card">
                          <div className="card-img">
-                            <Link to={mediaType === "tv"?`/tv/${item.id}`:`/movie/${item.id}` }> <img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`} alt=""/>
+                            <Link to={mediaType === "tv"?`/tv/${item.id}`:`/movie/${item.id}`}> <img src={`${IMAGE_BASE_API}w500/${item.poster_path}`} alt=""/>
                                 <div className="consensus">
                                     <div className="info-rating">{item.vote_average}</div>
                                 </div>

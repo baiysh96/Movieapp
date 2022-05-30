@@ -2,13 +2,9 @@ import React, {useState  } from 'react';
 import Serials from "../Serials";
 import Films from "../Films";
 import { useNavigate } from "react-router-dom";
-// import axios from "axios";
-// import Spinner from "../../components/Spinner";
+import {IMAGE_BASE_API} from "../../constants/Constants";;
 
 const HomePage = () => {
-    // const {id} = useParams()
-    // const [movie,setMovie] = useState({})
-    // const [loader,setLoader] = useState(true)
     let navigate = useNavigate();
     const [search,setSearch] = useState("")
     const handlerChange = (e) => setSearch((e.target.value))
@@ -18,20 +14,12 @@ const HomePage = () => {
             setSearch("")
         }
     }
-    // useEffect(() => {
-    //     axios(`https://api.themoviedb.org/3/movie/${id}?language=ru&api_key=042f11beb984d2ca7828fd2109953f49`)
-    //         .then((res) => {
-    //             setMovie(res.data)
-    //             setLoader(false)
-    //         })
-    // },[id])
-    // if(loader) {
-    //     return <Spinner />
-    // }
+
+
     return (
        <div>
            <div className="homePage-box" style={{
-               backgroundImage: `url(https://image.tmdb.org/t/p/w1920_and_h600_multi_faces/kf456ZqeC45XTvo6W9pW5clYKfQ.jpg)`,
+               backgroundImage: `url(${IMAGE_BASE_API}w1920_and_h600_multi_faces/kf456ZqeC45XTvo6W9pW5clYKfQ.jpg)`,
                backgroundPosition: "center top",
                backgroundColor:" rgba(3 37 65 0.8) , rgba(-3 37 65  0)",
                backgroundSize: "cover",

@@ -339,10 +339,55 @@ button[type=submit]:hover {
   padding: 4px 20px;
   font-size: 1em;
   cursor: pointer;
+  transition: background-color 0.5s ease;
 }
 .info-header {
   text-align: center;
   margin-top: 20px;
+  justify-content: center;
+}
+.actors-movie-container {
+  background-color: whitesmoke;
+  box-shadow: 2px 2px 2px 2px;
+  padding: 10px 20px;
+  overflow-x: hidden ;
+}
+.actors-movie {
+  display: flex;
+  border-bottom: black;
+  padding: 10px 0 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid gray;
+}
+.actors-movie a {
+  margin: 0 0 0 20px;
+  color: inherit;
+
+}
+.position {
+  position: relative;
+}
+.social-img {
+  margin-right: 20px;
+  margin-bottom: 15px;
+}
+.title{
+  margin-bottom: 12px;
+  color: inherit;
+}
+.title:hover {
+  color: inherit;
+}
+.film-info {
+  padding: 30px 30px;
+  background-color: whitesmoke;
+  position: absolute;
+  right: -80px;
+  top: 0;
+  z-index: 55;
+}
+.pagination-circle img:hover {
+  background-color: black;
 }
 .active {
   -webkit-text-fill-color:  #c0fecf;
