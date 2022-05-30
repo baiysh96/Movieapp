@@ -2,12 +2,14 @@ import React from 'react';
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {Link} from "react-router-dom";
+import {BASE_API, IMAGE_BASE_API} from "../../constants/Constants";
+const API_KEY = process.env.REACT_APP_APIKEY
 const PopularMovie = () => {
        const [popular,setPopular] = useState([])
        const [mediaType,setMediaType] = useState("tv")
        const [active,setActive] = useState(false)
         useEffect(() => {
-            axios(`https://api.themoviedb.org/3/discover/${mediaType}?language=ru&api_key=042f11beb984d2ca7828fd2109953f49`)
+            axios(`${BASE_API}discover/${mediaType}?language=ru&api_key=${API_KEY}`)
                 .then(({data}) => setPopular(data.results))
         },[mediaType])
         const formatDate = (date) => {
@@ -29,7 +31,7 @@ const PopularMovie = () => {
                             <div key={item.id} className="movie-card">
                                 <div className="card-img">
                                     <Link key={item.id} to={mediaType === "tv"?`/tv/${item.id}`:`/movie/${item.id}`}>
-                                        <img src={`https://image.tmdb.org/t/p/w440_and_h660_face${item.poster_path}`} alt=""/>
+                                        <img src={`${IMAGE_BASE_API}w440_and_h660_face${item.poster_path}`} alt=""/>
                                     </Link>
                                     <div className="consensus">
                                         <div className="info-rating">{item.vote_average}</div>
