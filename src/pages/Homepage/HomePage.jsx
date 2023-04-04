@@ -1,20 +1,19 @@
 import React, {useState  } from 'react';
+import axios from 'axios'
 import Serials from "../Serials";
 import Films from "../Films";
 import { useNavigate } from "react-router-dom";
-import {IMAGE_BASE_API} from "../../constants/Constants";;
+import {BASE_API, IMAGE_BASE_API} from "../../constants/Constants";
+const API_KEY = process.env.REACT_APP_APIKEY
 
 const HomePage = () => {
     let navigate = useNavigate();
     const [search,setSearch] = useState("")
     const handlerChange = (e) => setSearch((e.target.value))
-    const handlerSearch = (e) => {
-        if(e.key === "Enter") {
-            navigate(`/search/${search}`)
-            setSearch("")
-        }
+    const handlerSearch = async () => {
+       const {data} = await axios(`${BASE_API}search/${search}/credits?language=ru&api_key=${API_KEY}`)
+        console.log(data)
     }
-
 
     return (
        <div>

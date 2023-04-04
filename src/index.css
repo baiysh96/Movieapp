@@ -127,7 +127,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 5;
+  z-index: 1;
 }
 .burger span {
   width: 50px;
@@ -166,6 +166,7 @@ a {
 .show-menu span:before,.show-menu span:after{
   top: 0;
   bottom: 0;
+  left: 0;
   margin: auto;
 }
 .show-menu span{
@@ -609,19 +610,61 @@ button[type=submit]:hover {
   .col-8,.col-3,.col-7,.col-2,.col-4,.col-6{
     width: 100%;
   }
+
   .col-4,.item-col{
     width: 100%;
     padding: 0 5px;
     text-align:center;
   }
   .logo {
-    width: 230px;
+    width: 110px;
   }
   img{
     width: 100%;
   }
-  .homepage-title{
-    width: 100%;
+  .home-title{
+    font-size: 26px;
+    opacity: 0;
+  }
+  .home-subtitle {
+    font-size: 14px;
+    opacity: 0;
+  }
+  .footer-logo {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+  }
+  footer h2 {
+    font-size: 18px;
+    margin-left: 20px;
 
+  }
+  footer ul li {
+    font-size: 14px;
+  }
+  .film-info {
+  visibility: hidden;
+  }
+  .actors-movie {
+    /*display: flex;*/
+    border-bottom: black;
+    margin-bottom: 30px;
+    border-bottom: 1px solid gray;
+  }
+  .actors-movie img {
+    width: 15px;
+  }
+  footer {
+    margin-top: 20px;
+  }
+  .films-buttons button {
+    font-size: 12px;
+    margin-left: 5px;
+    padding: 2px 5px;
+  }
+  .films-title {
+    font-size: 16px;
+    margin-right: 10px;
   }
 }

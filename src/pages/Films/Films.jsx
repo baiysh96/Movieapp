@@ -14,7 +14,7 @@ const Films = () => {
         axios(`https://api.themoviedb.org/3/trending/movie/${time}?language=ru&api_key=042f11beb984d2ca7828fd2109953f49`)
             .then(({data}) => {
                 setTrends(data.results)
-                setIsLoading(false)
+                setIsLoading(true)
             })
     },[time])
     const formatDate = (date) => {
@@ -23,7 +23,7 @@ const Films = () => {
         reversedDate[1] = month[reversedDate[1] - 1]
         return reversedDate.join(' ')
     }
-    if(isLoading) {
+    if(!trends) {
         return <Spinner />
     }
     return (

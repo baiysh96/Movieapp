@@ -13,7 +13,7 @@ import Footer from "./components/Footer";
 
 const App = () => {
     return (
-        <div>
+        <>
             <BrowserRouter>
                 <Header />
                 <Routes className="container">
@@ -28,8 +28,7 @@ const App = () => {
                 </Routes>
                 <Footer/>
             </BrowserRouter>
-
-        </div>
+        </>
     );
 };
 
